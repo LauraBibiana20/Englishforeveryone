@@ -1,2 +1,105 @@
 # Englishforeveryone
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English for Everyone | Prototipo</title>
+<style>
+:root{--navy:#173b65;--blue:#2d6fa8;--sky:#eaf4fb;--gold:#f4c95d;--ink:#203044;--muted:#607286;--green:#287a58}
+*{box-sizing:border-box}body{margin:0;background:#f3f6fa;color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+header{background:linear-gradient(130deg,#173b65,#2d6fa8);color:white;padding:28px 20px 24px}
+.wrap{max-width:980px;margin:auto}.eyebrow{font-size:12px;letter-spacing:2px;font-weight:bold;color:#d5e9fa}
+h1{font-size:clamp(28px,5vw,44px);margin:10px 0 6px}.subtitle{font-size:18px;margin:0;color:#eaf4fb}
+.hero-note{margin-top:18px;max-width:680px;line-height:1.5;color:#f2f7fc}
+main{max-width:980px;margin:22px auto;padding:0 16px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px}
+.step{border:2px solid #d7e1eb;background:white;border-radius:14px;padding:13px 8px;cursor:pointer;font-weight:bold;color:var(--navy)}
+.step small{display:block;font-weight:normal;color:var(--muted);margin-top:4px}
+.step.active{background:var(--navy);border-color:var(--navy);color:white}.step.active small{color:#d9e8f5}
+.panel{background:white;border-radius:18px;padding:clamp(18px,4vw,30px);box-shadow:0 8px 26px #173b6514}
+.tag{display:inline-block;background:#e5f1fb;color:#1d5b8e;border-radius:30px;padding:6px 11px;font-size:12px;font-weight:bold;letter-spacing:.5px}
+h2{font-size:28px;color:var(--navy);margin:13px 0 8px}.intro{line-height:1.6;color:#4b5e70;margin-top:0}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}
+.vocab{background:#f4f8fc;border:1px solid #dce7f1;border-radius:14px;padding:18px 10px;text-align:center}
+.emoji{font-size:42px;display:block;margin-bottom:8px}.word{font-weight:bold;font-size:18px;color:var(--navy)}.translation{font-size:13px;color:var(--muted);margin-top:4px}
+.question{background:#f7f9fc;border-radius:14px;padding:18px;margin-top:18px}
+.options{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.option{border:1px solid #c8d6e4;background:white;border-radius:10px;padding:10px 14px;cursor:pointer;color:var(--ink)}
+.option:hover,.option.selected{border-color:var(--blue);background:#eaf4fb}
+.feedback{font-weight:bold;margin-top:12px;min-height:22px}.good{color:var(--green)}.bad{color:#a35b16}
+label{display:block;font-weight:bold;margin:14px 0 7px}input,textarea,select{width:100%;border:1px solid #bdccda;border-radius:10px;padding:12px;font:inherit;background:white}
+textarea{min-height:90px;resize:vertical}.preview{border:2px dashed #b8cbdc;background:#f7fbff;border-radius:14px;padding:18px;margin-top:14px;text-align:center}
+.preview strong{display:block;font-size:26px;color:var(--navy);margin:8px}
+.btnrow{display:flex;justify-content:space-between;gap:12px;margin-top:22px}
+button.primary,button.secondary{border:0;border-radius:11px;padding:12px 18px;font-size:15px;font-weight:bold;cursor:pointer}
+.primary{background:var(--navy);color:white}.secondary{background:#e8eef4;color:var(--navy)}
+.mural{background:#f7f9fc;border-radius:14px;padding:16px;margin-top:16px}.mural-item{background:white;border:1px solid #dce7f1;border-radius:10px;padding:12px;margin-top:9px}
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:16px}.gallery article{border-radius:14px;background:#f3f8fc;padding:16px;border:1px solid #dce7f1}
+.dua{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}.dua div{background:#f4f8fc;padding:14px;border-radius:12px}.dua b{color:var(--navy)}
+footer{text-align:center;color:#64768a;font-size:13px;padding:24px}
+@media(max-width:650px){.steps{grid-template-columns:repeat(2,1fr)}.cards{grid-template-columns:repeat(2,1fr)}.dua{grid-template-columns:1fr}.gallery{grid-template-columns:1fr}.btnrow{flex-direction:column}.btnrow button{width:100%}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<div class="eyebrow">RECURSO EDUCATIVO DIGITAL · INGLÉS · PRIMARIA</div>
+<h1>English for Everyone</h1><p class="subtitle">Aprendemos inglés, participamos todos</p>
+<p class="hero-note">Una experiencia inclusiva para explorar vocabulario, crear producciones, colaborar y compartir aprendizajes. Cada estudiante puede participar de diferentes maneras.</p>
+</div></header>
+<main>
+<nav class="steps" aria-label="Etapas del recurso">
+<button class="step active" data-step="0">1 · EXPLORE<small>Descubrimos palabras</small></button>
+<button class="step" data-step="1">2 · CREATE<small>Construimos vocabulario</small></button>
+<button class="step" data-step="2">3 · COLLABORATE<small>Aprendemos juntos</small></button>
+<button class="step" data-step="3">4 · SHARE<small>Compartimos</small></button>
+</nav>
+<section class="panel" id="content" aria-live="polite"></section>
+<div class="dua">
+<div><b>Representación</b><p>Palabras, imágenes, pictogramas y apoyos auditivos.</p></div>
+<div><b>Acción y expresión</b><p>Responder hablando, escribiendo, dibujando, señalando o seleccionando.</p></div>
+<div><b>Implicación</b><p>Elección, acompañamiento, actividades breves y colaboración.</p></div>
+</div>
+</main>
+<footer>Prototipo de baja fidelidad · English for Everyone · TIC–TAC–TEP + DUA</footer>
+<script>
+const content=document.getElementById('content'), tabs=[...document.querySelectorAll('.step')];
+let stage=0, contribution='', selectedWord='Pencil', shared=false;
+const data=[
+`<span class="tag">MOMENTO 1 · TIC</span><h2>Explore: My classroom</h2><p class="intro">Observa los objetos del salón. Lee las palabras y relaciónalas con las imágenes. También puedes pedir que alguien lea las palabras en voz alta.</p>
+<div class="cards">
+<div class="vocab"><span class="emoji" aria-hidden="true">✏️</span><div class="word">Pencil</div><div class="translation">Lápiz</div></div>
+<div class="vocab"><span class="emoji" aria-hidden="true">📘</span><div class="word">Book</div><div class="translation">Libro</div></div>
+<div class="vocab"><span class="emoji" aria-hidden="true">🪑</span><div class="word">Chair</div><div class="translation">Silla</div></div>
+<div class="vocab"><span class="emoji" aria-hidden="true">🎒</span><div class="word">Bag</div><div class="translation">Mochila</div></div>
+</div><div class="question"><b>Actividad: ¿Qué significa “Book”?</b><div class="options">
+<button class="option" data-answer="Pencil">Lápiz</button><button class="option" data-answer="Book">Libro</button><button class="option" data-answer="Chair">Silla</button>
+</div><div class="feedback" id="feedback"></div></div>
+<p class="intro">Apoyos: imágenes, palabras, pictogramas y lectura en voz alta. El docente puede complementar con audio o video.</p>`,
+`<span class="tag">MOMENTO 2 · TAC</span><h2>Create: My vocabulary card</h2><p class="intro">Crea una tarjeta de vocabulario. Puedes escribir una palabra, dibujarla, elegir una imagen o dictar tu respuesta.</p>
+<label for="word">Mi palabra en inglés</label><input id="word" value="${escapeHtml(selectedWord)}" placeholder="Write a word">
+<div class="preview"><span class="emoji">🌟</span><strong id="wordPreview">${escapeHtml(selectedWord)}</strong><span>My English vocabulary card</span></div>
+<label for="mode">¿Cómo quieres mostrar lo que aprendiste?</label><select id="mode"><option>Escribiendo la palabra</option><option>Haciendo un dibujo</option><option>Seleccionando una imagen</option><option>Pronunciando o grabando un audio</option><option>Señalando una opción</option></select>
+<p class="intro">No hay una única forma correcta de participar: elige la que te permita comunicar tu aprendizaje.</p>`,
+`<span class="tag">MOMENTO 3 · TAC</span><h2>Collaborate: Our classroom</h2><p class="intro">Entre todos construiremos un mural de vocabulario. Cada integrante puede aportar una palabra, dibujo, imagen, frase o audio.</p>
+<label for="contribution">Escribe tu aporte para el mural</label><textarea id="contribution" placeholder="Ejemplo: I have a pencil.">${escapeHtml(contribution)}</textarea>
+<div class="mural"><b>OUR CLASSROOM MURAL</b><div class="mural-item">✏️ Pencil · Lápiz</div><div class="mural-item">📘 Book · Libro</div><div class="mural-item" id="myContribution">💬 ${escapeHtml(contribution||'Tu aporte aparecerá aquí.')}</div></div>
+<p class="intro">El docente puede reunir aportes escritos, dibujos, fotografías y audios en un mural digital de Padlet o Canva.</p>`,
+`<span class="tag">MOMENTO 4 · TEP</span><h2>Share: Our Inclusive English Wall</h2><p class="intro">¡Compartimos lo que aprendimos! La galería reúne las producciones individuales y grupales para que la comunidad educativa pueda conocerlas.</p>
+<div class="gallery"><article><span class="emoji">🗂️</span><b>Vocabulary cards</b><p>Tarjetas con palabras e imágenes.</p></article><article><span class="emoji">🎨</span><b>Our drawings</b><p>Dibujos y producciones visuales.</p></article><article><span class="emoji">🔊</span><b>Our voices</b><p>Audios de pronunciación y frases.</p></article><article><span class="emoji">🤝</span><b>Our teamwork</b><p>Aportes al mural colectivo.</p></article></div>
+<div class="mural"><b>MI APORTE A LA GALERÍA</b><div class="mural-item" id="finalContribution">${escapeHtml(contribution||'Aún no has escrito un aporte. Puedes compartir un dibujo, imagen o audio con ayuda del docente.')}</div></div>
+<button class="primary" id="shareBtn" style="margin-top:16px">¡Quiero compartir mi aprendizaje!</button><div class="feedback" id="shareFeedback"></div>
+<p class="intro">En la implementación real, el docente recopilará las producciones y las publicará en la galería digital del grupo, con autorización y cuidado de la privacidad.</p>`
+];
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function render(){tabs.forEach((t,i)=>t.classList.toggle('active',i===stage));content.innerHTML=data[stage];
+if(stage===0){content.querySelectorAll('[data-answer]').forEach(b=>b.addEventListener('click',()=>{content.querySelectorAll('[data-answer]').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');let f=document.getElementById('feedback');if(b.dataset.answer==='Book'){f.textContent='¡Muy bien! Book significa libro.';f.className='feedback good';}else{f.textContent='Inténtalo nuevamente. Observa las imágenes.';f.className='feedback bad';}}));}
+if(stage===1){let w=document.getElementById('word');w.addEventListener('input',()=>{selectedWord=w.value;document.getElementById('wordPreview').textContent=w.value||'Your word';});}
+if(stage===2){let c=document.getElementById('contribution');c.addEventListener('input',()=>{contribution=c.value;document.getElementById('myContribution').textContent='💬 '+(contribution||'Tu aporte aparecerá aquí.');});}
+if(stage===3){document.getElementById('shareBtn').addEventListener('click',()=>{document.getElementById('shareFeedback').textContent='¡Excelente! Tu participación está lista para ser compartida con el grupo.';document.getElementById('shareFeedback').className='feedback good';});}
+}
+tabs.forEach(t=>t.addEventListener('click',()=>{if(stage===1){let w=document.getElementById('word');if(w)selectedWord=w.value;}if(stage===2){let c=document.getElementById('contribution');if(c)contribution=c.value;}stage=Number(t.dataset.step);render();}));
+render();
+</script>
+</body></html>
 Prototipo
